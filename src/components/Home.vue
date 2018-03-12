@@ -1,7 +1,6 @@
 <template>
 <div id="landing-page">
 	<div class="ui modal addMessage">
-		<i class="close icon"></i>
 		<div class="header">
 			New Message
 		</div>
@@ -26,7 +25,7 @@
 			</div>
 		</div>
 		<div class="actions">
-			<div class="ui black deny button">
+			<div class="ui black deny button" v-on:click="hideMessageDialog()">
 				Cancel
 			</div>
 			<div class="ui positive right labeled icon button" v-on:click="addMessage()">
@@ -213,8 +212,15 @@ export default {
   		}
   	},
   	showMessageDialog: function(){
+  		let _self = this;
+  		$('#message-type').val('');
+  		$('#message-text').val('');
   		$('.ui.selection.dropdown.addMessage').dropdown('set selected', '0');
-  		$('.ui.modal.addMessage').modal('show');
+  		_self.modalDom.modal('show');
+  	},
+  	hideMessageDialog: function(){
+  		let _self = this;
+  		_self.modalDom.modal('hide');
   	},
   	addMessage: function(){
   		let _self = this;
@@ -239,11 +245,14 @@ export default {
   			_self.$session.set('user', user)
 		  	_self.user = user;
 		  	_self.status = 'on';
+		  	_self.hideMessageDialog();
   		}).catch((err)=> console.log(err));
   	}
   }, 
   mounted: function(){
   	let _self = this;
+
+  	_self.modalDom = $('.ui.modal.addMessage').modal({closable: false});
   	if(_self.user){
   		return app.service('users').find({query:{
   			email: _self.user.email
