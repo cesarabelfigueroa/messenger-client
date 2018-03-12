@@ -84,8 +84,8 @@
 						</div>
 						<div class="ui container" v-if="page == 'messages'">
 							<div class="ui menu">
-								<div class="header item" v-on:click="showMessageDialog()">
-									+
+								<div class="header item">
+									<button class="ui primary button" v-on:click="showMessageDialog">+</button>
 								</div>
 							</div>
 							<div class="ui cards" v-if="user && user.messages">
@@ -140,7 +140,7 @@ export default {
   		let _self = this;
   		let app = this.$app;
   		_self.status = 'on';
-  		this.$hello('facebook').login({scope: 'email, friends, photos', redirect_uri: 'http://localhost:8080/'});
+  		this.$hello('facebook').login({scope: 'email, friends, photos', redirect_uri: ''});
 
 		this.$hello.on('auth.login', async function (auth) {
 		    const socialToken = auth.authResponse.access_token;

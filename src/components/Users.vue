@@ -64,7 +64,7 @@ export default {
   		let _self = this;
   		let app = this.$app;
   		_self.status = 'on';
-  		this.$hello('facebook').login({scope: 'email, friends, photos', redirect_uri: 'http://localhost:8080/'});
+  		this.$hello('facebook').login({scope: 'email, friends, photos', redirect_uri: ''});
 
 		this.$hello.on('auth.login', async function (auth) {
 		    const socialToken = auth.authResponse.access_token;
