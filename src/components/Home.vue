@@ -1,6 +1,6 @@
 <template>
 <div id="landing-page">
-	<div class="ui modal addMessage">
+	<div class="ui modal addMessage" id="addMessage">
 		<div class="header">
 			New Message
 		</div>
@@ -252,7 +252,7 @@ export default {
   mounted: function(){
   	let _self = this;
 
-  	_self.modalDom = $('.ui.modal.addMessage').modal({closable: false});
+  	_self.modalDom = $('#addMessage').modal({closable: false});
   	if(_self.user){
   		return app.service('users').find({query:{
   			email: _self.user.email
