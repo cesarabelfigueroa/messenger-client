@@ -252,7 +252,9 @@ export default {
   mounted: function(){
   	let _self = this;
 
-  	_self.modalDom = $('#addMessage').modal({closable: false});
+  	if(!_self.modalDom){
+  		_self.modalDom = $('#addMessage').modal({closable: false});
+  	}
   	if(_self.user){
   		return app.service('users').find({query:{
   			email: _self.user.email
